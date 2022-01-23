@@ -1,0 +1,15 @@
+{% extends 'Appcoder/padre.html' %}
+
+{% block texto_titulo %}
+    Cliente
+{% endblock %}
+
+{% block contenidoQueCambia %}
+
+<h3> Los Cliente son: </h3>
+    {% for cliente in cliente %}
+        {{ cliente }}
+        <br>
+    {%endfor%}
+
+{% endblock %}
