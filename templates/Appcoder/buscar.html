@@ -7,16 +7,18 @@
     <title>Document</title>
 </head>
 <body>
-    {% if cursos  %}
+    Estoy buscandi al cliente:
+    {% if cliente %}
+
     <ul>
-        {% for curso in cursos%}
+        {% for cliente in cliente %}
         
-        <li>   {{curso}}    </li>
+        <li>   {{ cliente.nombre }}    </li>
 
         {% endfor%}
 
     </ul>
 
-    {% endif%}
+    {% endif%}  
 </body>
 </html>

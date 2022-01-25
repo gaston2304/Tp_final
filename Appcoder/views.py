@@ -41,9 +41,11 @@ def busqueda_clientes(request):
     return render(request, 'Appcoder/busquedaCliente.html')
 
 def buscar(request):
-    cliente = request.GET["cliente"]
+    nombre = request.GET['nombre']
     
-    nombres = Cliente.objects.filter(cliente=cliente)
+    telefono = Cliente.objects.filter(nombre=nombre)
+    email = Cliente.objects.filter(nombre=nombre)
+    apellido = Cliente.objects.filter(nombre=nombre)
     
     return render(request,'Appcoder/buscar.html',
-        {'nombre':nombre})
+        {'nombre':nombre,'telefono':telefono,'email':email,'apellido':apellido})
