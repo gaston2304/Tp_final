@@ -10,10 +10,12 @@
 <table class="table">
     <tr>
         <th>#</th>
+        <th>Nombre</th>
     </tr>
     {% for cliente in cliente %}
         <tr>
             <th scope="row">{{cliente.id}}</th>
+            <td>{{cliente.nombre}}</td>
         </tr>
     {%endfor%}
     
