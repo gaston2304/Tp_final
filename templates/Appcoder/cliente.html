@@ -7,10 +7,17 @@
 {% block contenidoQueCambia %}
 
 <h3> Los Cliente son: </h3>
+<table class="table">
+    <tr>
+        <th>#</th>
+    </tr>
     {% for cliente in cliente %}
-        {{ cliente }}
-        <br>
+        <tr>
+            <th scope="row">{{cliente.id}}</th>
+        </tr>
     {%endfor%}
+    
+</table>
 
     <a class="btn btn-primary" href="{% url 'cliente_formulario' %}">agregar </a>
 

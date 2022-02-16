@@ -1,0 +1,17 @@
+{% extends 'Appcoder/padre.html' %}
+
+{% block texto_titulo %}
+    Ver_Evento
+{% endblock %}
+
+{% block contenidoQueCambia %}
+
+    <ul>
+        <li>Direccion: {{evento.direccion}}</li>
+        <li>Altura: {{evento.altura}}</li>
+        <li>Fecha: {{evento.fecha_evento}}</li>
+    </ul>
+
+    
+
+{% endblock %}

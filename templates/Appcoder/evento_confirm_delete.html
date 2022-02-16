@@ -1,0 +1,22 @@
+{% extends 'Appcoder/padre.html' %}
+
+{% block texto_titulo %}
+    Evento_delete
+{% endblock %}
+
+{% block contenidoQueCambia %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <ul>
+            <li>Direccion: {{evento.direccion}}</li>
+            <li>Altura: {{evento.altura}}</li>
+            <li>Fecha: {{evento.fecha_evento}}</li>
+        </ul>
+
+        <input type = "submit" value="Borrar">
+
+    </form>
+
+{% endblock %}

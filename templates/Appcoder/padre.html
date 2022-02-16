@@ -25,9 +25,9 @@
     </head>
     <body>
         <!-- Navigation-->
-        <nav class="navbar navbar-light bg-light static-top">
+        <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'inicio' %}">Inicio</a>´
+                <a class="navbar-brand" href="{% url 'inicio' %}">Inicio</a>
                 <a class="navbar-brand" href="{% url 'cliente' %}">Cliente</a>
                 <a class="navbar-brand" href="{% url 'tragos' %}">Tragos</a>
                 <a class="navbar-brand" href="{% url 'evento' %}">Evento</a>
@@ -37,35 +37,17 @@
 
 
         <!-- Masthead-->
-        <header class="masthead">
-            <div class="container position-relative">
-                <div class="row justify-content-center">
-                    <div class="col-xl-6">
-                        <div class="text-center text-white">
-                            <!-- Page heading-->
-                            <h1 class="mb-5">Nuestra web Intermedia de Django - CoderHouse</h1>
-                            <!-- Signup form-->
-                            <!-- * * * * * * * * * * * * * * *-->
-                            <!-- * * SB Forms Contact Form * *-->
-                            <!-- * * * * * * * * * * * * * * *-->
-                            <!-- This form is pre-integrated with SB Forms.-->
-                            <!-- To make this form functional, sign up at-->
-                            <!-- https://startbootstrap.com/solution/contact-forms-->
-                            <!-- to get an API token!-->
-                           
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-       
+        <!-- <img src="{%static 'AppCoder/assets/img/antioquia.jpg' %}" class="img-fluid"> -->
 
 
         <!-- Esto es lo que va a cambiar-->
 
+        <div class="container">
         {% block contenidoQueCambia %}
 
+        
         {% endblock %}
+        </div>
 
 
         
@@ -86,7 +68,7 @@
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                                <a href="https://es-la.facebook.com/antioquiabarras/" target="blank"><i class="bi-facebook fs-3"></i></a>
                             </li>
                             <li class="list-inline-item me-4">
                                 <a href="#!"><i class="bi-twitter fs-3"></i></a>

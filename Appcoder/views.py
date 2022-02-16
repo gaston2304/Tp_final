@@ -1,7 +1,10 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from Appcoder.models import Tragos,Cliente
-from Appcoder.forms import ClienteForm
+from Appcoder.models import Tragos,Cliente,Evento
+from Appcoder.forms import ClienteForm,EventoForm
+from django.forms import model_to_dict
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView,DeleteView
 
 def crear_trago(request, precio):
     trago1 = Tragos(nombre= "fernet" ,precio=precio)
@@ -16,8 +19,7 @@ def cliente(request):
     return render(request, 'Appcoder/cliente.html',
                   {'cliente': Cliente.objects.all() })
     
-def evento(request):
-    return render(request, 'Appcoder/evento.html')
+
     
 def tragos(request):
     return render(request, 'Appcoder/tragos.html')
@@ -49,3 +51,73 @@ def buscar(request):
     
     return render(request,'Appcoder/buscar.html',
         {'nombre':nombre,'telefono':telefono,'email':email,'apellido':apellido})
+    
+def evento(request):
+    return render(request, 'Appcoder/evento.html',
+                  {'evento': Evento.objects.all() })
+    
+def evento_add(request):
+    if request.method == 'POST':
+        formulario = EventoForm(request.POST)
+     
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            Evento.objects.create(
+                direccion=data['direccion'],
+                altura=data['altura'],
+                fecha_evento=data['fecha_evento'])
+            return redirect('evento')
+    else:
+        formulario = EventoForm()    
+    return render(request, 'Appcoder/clienteFormulario.html',{'formulario':formulario})
+
+def evento_delete(request,id_evento):
+    evento = Evento.objects.get(id=id_evento)
+    evento.delete()
+    
+    return redirect("evento")
+
+def evento_update(request,id_evento):
+    if request.method == 'POST':
+        formulario = EventoForm(request.POST)
+     
+        if formulario.is_valid():
+            data = formulario.cleaned_data
+            
+            evento.direccion = data['direccion']
+            evento.altura = data['altura']
+            evento.fecha_evento = data['fecha_evento']
+            
+            evento.save()
+            
+            return redirect('evento')
+    else:
+        formulario = EventoForm(model_to_dict(evento))    
+    return render(request, 'Appcoder/clienteFormulario.html',{'formulario':formulario})
+
+class EventoListView(ListView):
+    model = Evento
+    template_name = 'Appcoder/evento.html'
+    context_object_name = 'evento'
+    
+class EventoDetailView(DetailView):
+    model = Evento
+    template_name= 'Appcoder/ver_evento.html'
+    
+class EventoCreateView(CreateView):
+    model = Evento
+    success_url =  reverse_lazy('evento')
+    fields = ['direccion','altura','fecha_evento']
+    template_name = 'Appcoder/evento_form.html'
+    
+class EventoUpdateView(UpdateView):
+    model = Evento
+    success_url =  reverse_lazy('evento')
+    fields = ['direccion','altura','fecha_evento']
+    template_name = 'Appcoder/evento_form.html'
+    
+class EventoDeleteView(DeleteView):
+    model = Evento
+    success_url =  reverse_lazy('evento')
+    #template_name = 'Appcoder/evento_delete.html'
+    
