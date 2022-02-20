@@ -1,19 +1,26 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from Appcoder.models import Tragos,Cliente,Evento
-from Appcoder.forms import ClienteForm,EventoForm
+from Appcoder.models import Tragos,Cliente,Evento,Avatar
+from Appcoder.forms import ClienteForm,EventoForm,AvatarFormulario
 from django.forms import model_to_dict
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView,DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 def crear_trago(request, precio):
     trago1 = Tragos(nombre= "fernet" ,precio=precio)
     trago1.save()
     
     return HttpResponse(f'Trago creado {precio}$')
-
+#@login_required
 def inicio(request):
-    return render(request,'Appcoder/inicio.html')
+    avatares = Avatar.objects.filter(user=request.user)
+    if avatares:
+        avatar_url = avatares.last().imagen.url
+    else:
+        avatar_url = ''    
+    return render(request,'Appcoder/inicio.html',{'avatar_url':avatar_url})
     
 def cliente(request):
     return render(request, 'Appcoder/cliente.html',
@@ -95,7 +102,7 @@ def evento_update(request,id_evento):
         formulario = EventoForm(model_to_dict(evento))    
     return render(request, 'Appcoder/clienteFormulario.html',{'formulario':formulario})
 
-class EventoListView(ListView):
+class EventoListView(LoginRequiredMixin,ListView):
     model = Evento
     template_name = 'Appcoder/evento.html'
     context_object_name = 'evento'
@@ -120,4 +127,18 @@ class EventoDeleteView(DeleteView):
     model = Evento
     success_url =  reverse_lazy('evento')
     #template_name = 'Appcoder/evento_delete.html'
+@login_required    
+def agregar_avatar(request):
+    if request.method=='POST':
+        formulario = AvatarFormulario(request.POST, request.FILES)
+        
+        if formulario.is_valid():
+            avatar = Avatar(user=request.user,imagen=formulario.cleaned_data['imagen'])
+            avatar.save()
+            return redirect('inicio')           
+        
+    else:
+        formulario = AvatarFormulario()
+        
+    return render(request,'Appcoder/crear_avatar.html',{'form':formulario})
     

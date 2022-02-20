@@ -9,13 +9,19 @@
 <h3> Los Cliente son: </h3>
 <table class="table">
     <tr>
-        <th>#</th>
-        <th>Nombre</th>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Email</th>
+        <th scope="col">Telefono</th>
     </tr>
     {% for cliente in cliente %}
         <tr>
             <th scope="row">{{cliente.id}}</th>
             <td>{{cliente.nombre}}</td>
+            <td>{{cliente.apellido}}</td>
+            <td>{{cliente.email}}</td>
+            <td>{{cliente.telefono}}</td>
         </tr>
     {%endfor%}
     

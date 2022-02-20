@@ -20,6 +20,149 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{%static 'AppCoder/css/styles.css' %}" rel="stylesheet" />
+        <style type="text/css">
+            html {
+                min-height: 100%;
+                position: relative;
+            }
+            body {
+                margin: 0;
+                margin-bottom: 40px;
+            }
+            footer {
+                display: flex;
+                align-items: center;
+                position: absolute;
+                bottom: 0;
+                width: 100%;
+                height: 40px;
+            }
+        </style>
+
+
+    </head>
+    <body>
+        <!-- Navigation-->
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success ">
+          <div class="container-fluid bg-success">
+            <a class="navbar-brand" href="{% url 'inicio' %}">ANTIOQUIA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'cliente' %}">Cliente</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'tragos' %}">Tragos</a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="{% url 'evento' %}">Evento</a>
+                    </li>
+                </ul>
+
+                {% if not request.user.is_authenticated %}
+                    <a class="btn btn-outline-success btn-sm bg-white" href="{% url 'login' %}">INICIAR</a>
+                {% else %}
+                <a class="navbar-brand" href="#">
+                    <img src="{{avatar_url}}" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                    Hola {{user.username}}!
+                  </a>
+                    <a class="btn btn-outline-success btn-sm bg-white" href="{% url 'logout' %}">Logout</a>
+                {% endif%}
+
+                
+                    
+
+                </div>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Masthead-->
+
+        
+
+
+
+        <!-- Esto es lo que va a cambiar-->
+
+        <div class="container" style="margin-bottom:9rem;margin-top: 1rem;">
+        {% block contenidoQueCambia %}
+
+        
+        {% endblock %}
+        </div>
+
+
+        
+     
+        <!-- Footer-->
+        <footer class="footer bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><a href="#!" class="text-success">Ayuda</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!" class="text-success">Contacto</a></li>
+                      
+                        </ul>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; Curso de Python - CoderHouse.</p>
+                    </div>
+                    <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+                        <ul class="list-inline mb-0 ">
+                            <li class="list-inline-item me-4">
+                                <a href="https://es-la.facebook.com/antioquiabarras/" target="blank" class="text-success"><i class="bi-facebook fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item me-4">
+                                <a href="#!" class="text-success"><i class="bi-twitter fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!" class="text-success"><i class="bi-instagram fs-3"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'AppCoder/js/scripts.js' %}"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
+
+{% comment %} 
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        {% load static %}
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>
+            {% block texto_titulo %}
+            {% endblock %}
+        </title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{%static 'AppCoder/assets/favicon.ico' %}" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{%static 'AppCoder/css/styles.css' %}" rel="stylesheet" />
 
 
     </head>
@@ -31,7 +174,13 @@
                 <a class="navbar-brand" href="{% url 'cliente' %}">Cliente</a>
                 <a class="navbar-brand" href="{% url 'tragos' %}">Tragos</a>
                 <a class="navbar-brand" href="{% url 'evento' %}">Evento</a>
-                <a class="btn btn-primary" href="#NADAAUN">INICIAR</a>
+                {% if not request.user.is_authenticated %}
+                    <a class="btn btn-primary" href="#NADAAUN">INICIAR</a>
+                {% else %}
+                    <p class='text-muted small mb-4 mb-lg-0'>Hola{{user.username}}!</p>
+                    <img src='{{avatar_url}}' height="40px"/>
+                    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+                {% endif%}
             </div>
         </nav>
 
@@ -91,4 +240,4 @@
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     </body>
-</html>
+</html> {% endcomment %}

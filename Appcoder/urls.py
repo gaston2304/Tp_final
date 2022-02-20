@@ -1,5 +1,5 @@
 from django.urls import path
-from Appcoder.views import EventoDetailView, EventoDeleteView, EventoCreateView, EventoListView,evento_update,evento_delete,evento_add,crear_trago, inicio,cliente,tragos,evento,cliente_formulario,buscar,busqueda_clientes,EventoUpdateView
+from Appcoder.views import agregar_avatar, EventoDetailView, EventoDeleteView, EventoCreateView, EventoListView,evento_update,evento_delete,evento_add,crear_trago, inicio,cliente,tragos,evento,cliente_formulario,buscar,busqueda_clientes,EventoUpdateView
 
 urlpatterns = [
     path('creartrago/<precio>', crear_trago),
@@ -19,4 +19,5 @@ urlpatterns = [
     path('evento/update/<pk>', EventoUpdateView.as_view(), name = 'evento_update'),
     path('evento/delete/<pk>', EventoDeleteView.as_view(), name = 'evento_delete'),
     path('evento/view/<pk>', EventoDetailView.as_view(), name = 'evento_view'),
+    path('user/avatar/add', agregar_avatar, name = 'avatar_add'),
 ]
