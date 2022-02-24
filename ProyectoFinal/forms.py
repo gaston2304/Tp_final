@@ -17,9 +17,12 @@ class UserEditForm(UserCreationForm):
     password1 = CharField(label='Contraseña', widget=PasswordInput)
     password2 = CharField(label='Repetir Contraseña', widget=PasswordInput)
     
-    class meta:
+    last_name = CharField()
+    first_name = CharField()
+    
+    class Meta:
         model = User
-        fields = ['email','password1','password2']
+        fields = ['email','password1','last_name','first_name']
         help_texts={k:''for k in fields}
         
     

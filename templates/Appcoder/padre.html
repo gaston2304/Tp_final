@@ -19,7 +19,7 @@
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{%static 'AppCoder/css/styles.css' %}" rel="stylesheet" />
+        <link href="{%static 'Appcoder/css/styles.css' %}" rel="stylesheet" />
         <style type="text/css">
             html {
                 min-height: 100%;
@@ -61,6 +61,12 @@
                     <li class="nav-item">
                        <a class="nav-link" href="{% url 'evento' %}">Evento</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'acerca_de_mi' %}">Acerca de mi</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="{% url 'avatar_add' %}">Foto de Perfil</a>
+                     </li>
                 </ul>
 
                 {% if not request.user.is_authenticated %}
@@ -71,6 +77,7 @@
                     Hola {{user.username}}!
                   </a>
                     <a class="btn btn-outline-success btn-sm bg-white" href="{% url 'logout' %}">Logout</a>
+                    <a class="btn btn-outline-success btn-sm bg-white" href="{% url 'user_editar' %}">Editar Usuario</a>
                 {% endif%}
 
                 

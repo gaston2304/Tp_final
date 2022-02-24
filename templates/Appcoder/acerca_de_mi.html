@@ -1,0 +1,23 @@
+{% extends 'Appcoder/padre.html' %}
+
+{% block texto_titulo %}
+    Acerca De Mi
+{% endblock %}
+
+{% block contenidoQueCambia %}
+
+{% load static %}
+<div class="d-flex justify-content-center">
+    <div id="content">
+        <div class="article">
+          <ul>
+            <li>
+                <h2>Desarrollador Vera Gaston Matias</h2>
+              <p> <img src="{%static 'Appcoder/assets/img/matias.jpg' %}" class="rounded mx-auto d-block" width="200" height="250" alt=""></p>
+              <p> Soy Tecnico Mecanico, luego realice una tecnicatura superior en Robotica y Automatizacion donde empece a introducirme al mundo de la programacion con Asembler y C++ </p>
+              <p> Elegi Python ya que es un lenguaje de alto nivel, rapido de entender y aprender. </p>
+              <p> Utilizando el Framework Django para diseñar este proyecto con minimos conocimentos y aplicando lo mas basico en la programacion del mismo, se puede observar una pagina real </p>
+            </li>      
+{% endblock %}
+
+

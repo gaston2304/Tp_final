@@ -13,7 +13,7 @@ def crear_trago(request, precio):
     trago1.save()
     
     return HttpResponse(f'Trago creado {precio}$')
-#@login_required
+@login_required
 def inicio(request):
     avatares = Avatar.objects.filter(user=request.user)
     if avatares:
@@ -21,7 +21,7 @@ def inicio(request):
     else:
         avatar_url = ''    
     return render(request,'Appcoder/inicio.html',{'avatar_url':avatar_url})
-    
+@login_required      
 def cliente(request):
     return render(request, 'Appcoder/cliente.html',
                   {'cliente': Cliente.objects.all() })
@@ -30,6 +30,9 @@ def cliente(request):
     
 def tragos(request):
     return render(request, 'Appcoder/tragos.html')
+@login_required  
+def acerca_de_mi(request):
+    return render(request, 'Appcoder/acerca_de_mi.html')
 
 def cliente_formulario(request):
     if request.method == 'POST':
@@ -58,7 +61,7 @@ def buscar(request):
     
     return render(request,'Appcoder/buscar.html',
         {'nombre':nombre,'telefono':telefono,'email':email,'apellido':apellido})
-    
+@login_required      
 def evento(request):
     return render(request, 'Appcoder/evento.html',
                   {'evento': Evento.objects.all() })

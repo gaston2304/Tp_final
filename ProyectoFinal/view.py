@@ -48,7 +48,7 @@ class UserCreateView(CreateView):
     template_name = 'registro.html'
     form_class = UserRegisterForm
     
-@login_required    
+@login_required   
 def editar_perfil(request):
     usuario = request.user
     
@@ -57,8 +57,9 @@ def editar_perfil(request):
         if formulario.is_valid():
             data = formulario.cleaned_data
             usuario.email = data['email']
-            usuario.password1 = data['password1']
-            usuario.password2 = data['password2']
+            usuario.set_password(data['password1'])
+            usuario.first_name = data['first_name']
+            usuario.last_name = data['last_name']
             usuario.save()
             return redirect('inicio')
     else:

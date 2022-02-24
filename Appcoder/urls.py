@@ -1,5 +1,5 @@
 from django.urls import path
-from Appcoder.views import agregar_avatar, EventoDetailView, EventoDeleteView, EventoCreateView, EventoListView,evento_update,evento_delete,evento_add,crear_trago, inicio,cliente,tragos,evento,cliente_formulario,buscar,busqueda_clientes,EventoUpdateView
+from Appcoder.views import acerca_de_mi,agregar_avatar, EventoDetailView, EventoDeleteView, EventoCreateView, EventoListView,evento_update,evento_delete,evento_add,crear_trago, inicio,cliente,tragos,evento,cliente_formulario,buscar,busqueda_clientes,EventoUpdateView
 
 urlpatterns = [
     path('creartrago/<precio>', crear_trago),
@@ -7,6 +7,7 @@ urlpatterns = [
     path('cliente', cliente, name='cliente'),
     path('tragos', tragos, name = 'tragos'),
     path('evento', evento, name = 'evento'),
+     path('acerca_de_mi', acerca_de_mi, name = 'acerca_de_mi'),
     path('clienteFormulario', cliente_formulario, name = 'cliente_formulario'),
     path('busquedaClientes', busqueda_clientes, name = 'busqueda_clientes'),
     path('buscar', buscar, name = 'buscar'),
